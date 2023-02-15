@@ -1,0 +1,27 @@
+<body>
+  <div class="m-3">
+    <h2> Bienvenue à la page d'accueil du Gossip Project </h2><br/>
+
+    <div class="row m-1">
+      <% @gossips.each_with_index do |gossip, index| %>
+        <div class = "col d-flex align-items-top">
+          <div class="card mb-3 p-3" style="width: 20rem;">
+            <div class="card-body">
+              <h5 class="card-title">Potin <%= index + 1%> : "<%= gossip.title %>"</h5>
+              <p class="card-text ">Auteur : <%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Date de création : <br/> <%= gossip.created_at.strftime("%d-%m-%y -%H:%M:%S") %></li>
+                <li class="list-group-item">Nombre de Gossips de l'auteur : <%= gossip.user.gossips.count %></li>
+                <li class="list-group-item">Nombre de commentaires sur ce Gossip : <%= gossip.comments.count %></li>
+                <p> </p>
+              </ul>
+            <div class="btn btn-warning">
+                <%= link_to "Le gossip en détails", gossip_path(gossip), style: 'color:white' %>
+            </div>
+          </div>
+        </div>
+    </div>
+      <% end %>
+  </div>
+</body>
+

@@ -1,0 +1,27 @@
+<div class="m-4">
+<h2> Pédigrée de nos chers auteurs </h2> </div>
+  <div class="container border border-secondary"> 
+    <div class="row border border-secondary fw-bold">
+        <div class="col-5">Auteur</div>    
+        <div class="col-5">Ville de l'auteur</div>         
+        <div class="col-2">Nombre de potins</div>
+    </div>
+
+
+    <% @authors.each_with_index do |author, index| %> 
+                          
+        <div class="row border border-light">
+            <div class="col-5"><a href= "<%=author_path(author.id)%>"><%=author.first_name%> <%=author.last_name%></a></div>            
+            <div class="col-5"><a href= "<%=city_path(author.city.id)%>"><%=author.city.name%></a></div>
+            <div class="col-2"><%=author.gossips.count%></div>         
+        </div>
+
+    <% end %>
+  </div>
+
+  <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action list-group-item-light">Liste des auteurs</a>
+
+  <% @authors.each_with_index do |author, index| %> 
+    <a href="#" class="list-group-item list-group-item-action list-group-item-light"> Auteur <%=index%> : <%=author.first_name%> <%=author.last_name%>     -    <%=author.gossips.count%> Gossips    -     Ville d'origine : <%=author.city.name%></a>
+  <% end %>

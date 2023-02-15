@@ -1,0 +1,20 @@
+<h1> Création d'un nouveau Gossip ! </h1>
+
+<% flash.each do |name, msg| %>
+  <div class="alert alert-danger" role="alert"> <%= msg %> </div>
+<% end %>
+
+<%# Form_tag %>
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  <%= label_tag 'Titre du gossip :' %>
+  <%= text_field_tag 'title', @gossip.title %>
+  <br /> <br />
+
+  <%= label_tag 'Contenu du gossip :' %>
+  <%= text_field_tag 'content', @gossip.content %>
+  <br /> <br />
+
+  <%= submit_tag "Créer mon nouveau Gossip" %>
+<% end %>
+

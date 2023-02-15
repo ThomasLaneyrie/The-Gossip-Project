@@ -1,0 +1,21 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-success" role="alert"> <%= msg %> </div>
+<% end %>
+
+<h1>Gossips N°<%= @gossip.id %> </h1>
+<p>Date de création : <%= @gossip.created_at %></p>
+<p>Titre du gossip : <%= @gossip.title %></p>
+<p>Auteur : <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></p>
+<p>Ville d'origine de l'auteur : <a href= "<%=city_path(@gossip.user.city.id)%>"><%=@gossip.user.city.name%></a></p>     
+<p>Vous voulez des informations sur l'auteur ? <%= link_to "Cliquer ici", author_path(@gossip.user.id) %></p>
+<p>Contenu du gossip : <%= @gossip.content %></p>
+
+<%= button_to "Supprimer le gossip", gossip_path(@gossip.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
+<br>
+
+<p>###################################   Section Commentaires   ###################################</p>
+
+<p> Les commentaires de la population déchainée :</p>
+<%= render @gossip.comments %>
+<%= render partial: 'comments/form', locals: { gossip: @gossip } %>
+

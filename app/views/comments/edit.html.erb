@@ -1,0 +1,12 @@
+<%= form_for [@gossip, @comment] do |f| %>                                  
+    <div class="form-group"> 
+        <label>Contenu du commentaire</label> 
+        <%= f.text_area :content, class: 'form-control' %>      
+    </div>                                                      
+    <div class="form-group">
+        <button type ="submit">Modifier le commentaire</button>
+    </div>
+
+    <%= button_to "Supprimer le commentaire", gossip_comment_url(@gossip,@comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
+
+<% end %>

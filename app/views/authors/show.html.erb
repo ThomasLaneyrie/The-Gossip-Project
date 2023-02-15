@@ -1,0 +1,18 @@
+<h2>Informations sur l'auteur !</h2>
+
+L'auteur : <%=@author.first_name%> <%= @author.last_name %> 
+<ul>
+  <li>Bio : <%=@author.description%></li>
+  <li>Si vous souhaitez le contacter : <%=@author.email%></li>
+  <li>Age de l'auteur : <%=@author.age%></li>
+  <li> Mais d'où vient-il ?? : <a href= "<%=city_path(@author.city.id)%>"><%=@author.city.name%></a></li>     
+  <li>Nombre de potins réalisés : <%= @author.gossips.count %> </li>
+</ul>
+
+<br>
+Lien vers tous ses potins :<% @author.gossips.each do |gossip| %>
+<ul>
+  <li> <%=gossip.title%> -> <%= link_to "Par ici", gossip_path(gossip) %>  </li>
+</ul>
+<% end %>
+

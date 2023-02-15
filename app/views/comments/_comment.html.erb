@@ -1,0 +1,10 @@
+<article>
+  <p>
+    <small>De <%=comment.user.first_name%> <%=comment.user.last_name%> </small>:&nbsp;&nbsp <%= comment.content %>
+   
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+    <a href= "<%= edit_gossip_comment_path(@gossip,comment)%>">Editer</a>
+
+  </p>
+  <hr />
+</article>
