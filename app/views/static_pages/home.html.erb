@@ -5,8 +5,14 @@
 <h1>Bienvenue sur la page d'acceuil de notre superbe site</h1>
 
 <% if logged_in? == true %>
-  <p>Bienvenue <%= current_user.first_name %>
+  <h3>Bienvenue <%= current_user.first_name %></h3>
+  <p>Allez sur "Tous les Gossips" pour suivre l'actualité de THP, ou dites-nous ce qui se passe chez les moussaillons en cliquant sur "Balancez vos Gossips" !</p>
   <% else %>
-  <p>Vous n'êtes pas connecté !</p>
+  <h3>Vous n'êtes pas connecté ! Connectez-vous pour accéder au contenu</h3>
+  Utilisateur à utiliser pour se connecter si flemme de vous créer un compte :
+  <ul>
+    <li>e-mail : "moussaillon@gmail.com"</li>
+    <li>mot de passe : "gossip"
+
 <% end %>
 

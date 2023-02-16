@@ -13,7 +13,7 @@ Tag.destroy_all
 JoinTableGossipTag.destroy_all
 PrivateMessage.destroy_all
 
-30.times do |index|
+20.times do |index|
   City.create(
     name:Faker::Address.city, 
     zip_code:Faker::Number.number(digits: 5)
@@ -28,14 +28,35 @@ end
     email: "#{["Kachou", "Champion78", "Victime83", "Toto"].sample}@#{["gmail.com", "yahoo.fr" , "lycos.fr", "wanadoo.fr", "laposte.net"].sample}",
     age: rand(5..99),
     city: City.find(rand(City.first.id..City.last.id)),
-    # password: "#{["A", "B", "C", "Z"].sample*10}"
     password: "salut"
    )
 end
 
-50.times do |index|
+#Utilisateur random pour se connecter + moi :
+User.create(
+  first_name: "Moussaillon", 
+  last_name: "THP",
+  description: "Gros glandu",
+  email: "moussaillon@gmail.com",
+  age: 33,
+  city: City.find(rand(City.first.id..City.last.id)),
+  password: "gossip"
+ )
+
+ User.create(
+  first_name: "Thomas", 
+  last_name: "Toto",
+  description: "Moussaillon amoché",
+  email: "toto@gmail.com",
+  age: 33,
+  city: City.find(rand(City.first.id..City.last.id)),
+  password: "coucou"
+ )
+
+40.times do |index|
    Gossip.create(
-    title: Faker::Lorem.characters(number:10),
+    # title: Faker::Lorem.characters(number:10),
+    title: Faker::Movie.title,
     content: Faker::Lorem.sentence,
     user: User.find(rand(User.first.id..User.last.id)) 
   ) 
@@ -60,7 +81,7 @@ puts "Seeds réalisés avec succès !"
 
 Comment.destroy_all
 
-30.times do |index|
+200.times do |index|
   Comment.create(
     content:Faker::Lorem.sentence,
     gossip: Gossip.find(rand(Gossip.first.id..Gossip.last.id)),
@@ -68,4 +89,12 @@ Comment.destroy_all
   )
 end
 
-puts "Seeds comments réalisés avec succès !"
+Like.destroy_all
+200.times do |index|
+  Like.create(
+    user: User.all.sample,
+    gossip: Gossip.all.sample
+  )
+end
+
+puts "Seeds likes réalisés avec succès !"

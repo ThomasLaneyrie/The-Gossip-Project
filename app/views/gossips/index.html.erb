@@ -1,22 +1,39 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-danger" role="alert"> <%= msg %> </div>
+<% end %>
+
 <body>
   <div class="m-3">
-    <h2> Bienvenue à la page d'accueil du Gossip Project </h2><br/>
+    <h2> Rien que pour vous : tous les Gossips de THP ! </h2><br/>
+
+
 
     <div class="row m-1">
       <% @gossips.each_with_index do |gossip, index| %>
         <div class = "col d-flex align-items-top">
           <div class="card mb-3 p-3" style="width: 20rem;">
             <div class="card-body">
-              <h5 class="card-title">Potin <%= index + 1%> : "<%= gossip.title %>"</h5>
-              <p class="card-text ">Auteur : <%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+              <h5 class="card-title d-flex justify-content-center" style="height: 3rem;">"<%= gossip.title %>"</h5>
+              <p class="card-text d-flex justify-content-center">Auteur : <%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Date de création : <br/> <%= gossip.created_at.strftime("%d-%m-%y -%H:%M:%S") %></li>
-                <li class="list-group-item">Nombre de Gossips de l'auteur : <%= gossip.user.gossips.count %></li>
-                <li class="list-group-item">Nombre de commentaires sur ce Gossip : <%= gossip.comments.count %></li>
+                <li class="list-group-item d-flex justify-content-center">&nbsp;Date de création<br/><%= gossip.created_at.strftime("%d-%m-%y  à %Hh%M") %></li>
+                <li class="list-group-item d-flex justify-content-center">Cet auteur a écrit <%= gossip.user.gossips.count %> Gossip</li>
+                <% like = current_user.likes.find_by(gossip: gossip.id)%>
+                <% if like == nil %>
+                  <li class="list-group-item d-flex justify-content-center "><%= button_to "Like", likes_path, params: { gossip_id: gossip.id }, method: :post, class:"btn btn-primary" %></li>
+                <% else %>
+                  <li class="list-group-item d-flex justify-content-center"><%= button_to "Unlike", like_path(like), method: :delete, class:"btn btn-danger" %></li>
+                <% end %>
+                <div class="container">                             
+                  <div class="row d-flex d-justify-content">
+                      <div class="col list-group-item d-flex justify-content-center align-items-center"><i class="fa-sharp fa-regular fa-message"></i>&nbsp;&nbsp<%= gossip.comments.count %></div>      
+                      <div class="col list-group-item d-flex justify-content-center align-items-center"><i class="fa-solid fa-thumbs-up"></i>&nbsp;&nbsp<%= gossip.likes.count %>  </div> 
+                  </div>
+                </div>
                 <p> </p>
               </ul>
-            <div class="btn btn-warning">
-                <%= link_to "Le gossip en détails", gossip_path(gossip), style: 'color:white' %>
+            <div class="btn btn-warning d-flex justify-content-center">
+               <%= link_to "Le Gossip en détails", gossip_path(gossip), style: 'color:white' %>
             </div>
           </div>
         </div>

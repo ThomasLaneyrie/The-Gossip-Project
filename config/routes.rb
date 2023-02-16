@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :gossips do
     resources :comments, only: [:create, :edit, :update, :destroy]
   end
+  
+  resources :likes, only: [:create, :destroy] 
+
   resources :authors,  only: [:new, :create, :index, :show] 
   resources :cities, only: [:show] 
 

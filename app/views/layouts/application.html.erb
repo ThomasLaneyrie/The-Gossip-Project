@@ -9,11 +9,12 @@
     <%# <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
     <%# <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/12d7aeab5c.js" crossorigin="anonymous"></script>
   </head>
 
 <header> 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Gossip-Bar</a>
+    <a class="navbar-brand text-warning" href="#">Gossip-Bar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,9 +23,6 @@
       <ul class="navbar-nav mr-auto">
         <li>
           <a class="nav-link" <%= link_to "Home", home_path %> </a>
-        </li>
-        <li>
-          <a class="nav-link" <%= link_to "Tous les gossips", gossips_path %> </a>
         </li>
         <li>
           <a class="nav-link" <%= link_to "La Dream Team", team_path %> </a> 
@@ -36,17 +34,21 @@
           <a class="nav-link" <%= link_to "Découvrez nos auteurs", authors_path %> </a>    
         </li>
         <li>
-          <a class="nav-link" <%= link_to "Balancez vos Gossips !", new_gossip_path %> </a>    
+          <a class="nav-link text-warning" <%= link_to "Tous les gossips", gossips_path %> </a>
+        </li>
+        <li>
+          <a class="nav-link text-warning" <%= link_to "Balancez vos Gossips !", new_gossip_path %> </a> 
         </li>
       </ul>
 
       <%# New %>
       <% if !logged_in? %>
         <form class="form-inline">
-            <a class="nav-link btn btn-primary" <%= link_to "Sign-up", new_author_path %> </a>    
+            <a class="nav-link btn btn-warning" <%= link_to "Inscrivez-vous", new_author_path %> </a>    
         </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
         <form class="form-inline">
-            <a class="nav-link btn btn-primary" <%= link_to "Sign-in", new_session_path %> </a>    
+            <a class="nav-link btn btn-warning" <%= link_to "Se connecter", new_session_path %> </a>    
         </form>
       <% else %>
         <div class="mr-3 text-success">Bienvenue <%= current_user.first_name %></div>

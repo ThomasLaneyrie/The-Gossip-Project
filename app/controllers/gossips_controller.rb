@@ -1,5 +1,6 @@
 class GossipsController < ApplicationController
   before_action :authenticate_user, only: [:new, :create, :index] 
+  before_action :is_gossip_creator?, only: [:edit, :update, :destroy] 
 
   def index 
     @gossips = Gossip.all
@@ -40,7 +41,15 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
     redirect_to gossips_path
-end
+  end
+
+  def is_gossip_creator?
+    @gossip = Gossip.find(params[:id])
+     unless @gossip.user == current_user
+      redirect_to gossip_path(@gossip.id), danger: "Vous ne pouvez éditer ce gossip, n'étant pas son créateur"
+    end
+  end
+  
 end
 
 private
