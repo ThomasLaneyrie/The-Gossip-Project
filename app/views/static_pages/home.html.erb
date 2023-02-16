@@ -1,0 +1,12 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-success" role="alert"> <%= msg %> </div>
+<% end %>
+
+<h1>Bienvenue sur la page d'acceuil de notre superbe site</h1>
+
+<% if logged_in? == true %>
+  <p>Bienvenue <%= current_user.first_name %>
+  <% else %>
+  <p>Vous n'êtes pas connecté !</p>
+<% end %>
+

@@ -21,7 +21,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li>
-          <a class="nav-link" <%= link_to "Home", gossips_path %> </a>
+          <a class="nav-link" <%= link_to "Home", home_path %> </a>
+        </li>
+        <li>
+          <a class="nav-link" <%= link_to "Tous les gossips", gossips_path %> </a>
         </li>
         <li>
           <a class="nav-link" <%= link_to "La Dream Team", team_path %> </a> 
@@ -36,7 +39,19 @@
           <a class="nav-link" <%= link_to "Balancez vos Gossips !", new_gossip_path %> </a>    
         </li>
       </ul>
-    </div>
+
+      <%# New %>
+      <% if !logged_in? %>
+        <form class="form-inline">
+            <a class="nav-link btn btn-primary" <%= link_to "Sign-up", new_author_path %> </a>    
+        </form>
+        <form class="form-inline">
+            <a class="nav-link btn btn-primary" <%= link_to "Sign-in", new_session_path %> </a>    
+        </form>
+      <% else %>
+        <div class="mr-3 text-success">Bienvenue <%= current_user.first_name %></div>
+        <%= button_to "Se déconnecter", session_path(session.id), method: :delete %> 
+      <% end %>
   </nav>
 </header>
 
@@ -44,3 +59,4 @@
     <%= yield %>
   </body>
 </html>
+

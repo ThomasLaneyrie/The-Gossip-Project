@@ -1,0 +1,17 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-danger" role="alert"> <%= msg %> </div>
+<% end %>
+
+<h1>Création d'un nouvel utilisateur de mon appli</h1>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>  
+  <%= label_tag 'Prenom : ' %> <%= text_field_tag 'first_name' %>  <br>
+  <%= label_tag 'Nom : ' %> <%= text_field_tag 'last_name' %>  <br>
+  <%= label_tag 'Décrivez-vous : ' %> <%= text_field_tag 'description' %>   <br>
+  <%= label_tag 'Votre e-mail : ' %> <%= text_field_tag 'email' %>  <br> 
+  <%= label_tag 'Quel age avez-vous ? : ' %> <%= text_field_tag 'age' %> <br> 
+  <%# city = je vais lui mettre un truc auto mais à coder plus tard %>    
+  <%= label_tag 'Votre mot de passe :' %>  <%= text_field_tag 'password' %> <br>
+  <%= label_tag 'Confirmation mot de passe :' %> <%= text_field_tag 'confirm_password' %> <br>                
+  <%= submit_tag "Inscription" %>                                  
+<% end %>

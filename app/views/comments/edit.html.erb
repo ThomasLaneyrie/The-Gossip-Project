@@ -6,7 +6,6 @@
     <div class="form-group">
         <button type ="submit">Modifier le commentaire</button>
     </div>
-
-    <%= button_to "Supprimer le commentaire", gossip_comment_url(@gossip,@comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
-
 <% end %>
+    
+<%= button_to "Supprimer le commentaire", gossip_comment_url(@gossip,@comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>

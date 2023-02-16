@@ -27,7 +27,9 @@ end
     description: Faker::Superhero.name,
     email: "#{["Kachou", "Champion78", "Victime83", "Toto"].sample}@#{["gmail.com", "yahoo.fr" , "lycos.fr", "wanadoo.fr", "laposte.net"].sample}",
     age: rand(5..99),
-    city: City.find(rand(City.first.id..City.last.id))
+    city: City.find(rand(City.first.id..City.last.id)),
+    # password: "#{["A", "B", "C", "Z"].sample*10}"
+    password: "salut"
    )
 end
 

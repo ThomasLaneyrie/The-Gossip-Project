@@ -1,4 +1,6 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create, :index] 
+
   def index 
     @gossips = Gossip.all
     @comment = Comment.create
@@ -13,7 +15,7 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title:params["title"], content:params["content"], user: User.create(first_name:"Thomas", last_name:"Laneyrie",description:"Si chaud today", email:"toto@gmail.com", age:33, city:City.first))
+    @gossip = Gossip.new(title:params["title"], content:params["content"], user:current_user)
     if @gossip.save
       redirect_to gossip_path(@gossip), success: 'Le Gossip a été créé avec succès'
     else 
@@ -45,3 +47,4 @@ private
 def post_params
   params.require(:gossip).permit(:title,:content) 
 end
+

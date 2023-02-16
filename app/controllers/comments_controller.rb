@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create] 
+  
   def create
       @comment = Comment.new(comment_params)
-      @comment.user = User.create(first_name:"Thomas", last_name:"Laneyrie",description:"Si chaud today", email:"toto@gmail.com", age:33, city:City.first)
+      @comment.user = current_user
       @comment.save
       redirect_to gossip_path(@comment.gossip)
   end
@@ -17,7 +19,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])    
-    @gossip = Gossip.find(params[:gossip_id])  
+    @gossip = Gossip.find(params[:gossip_id])
     @comment.update(comment_params) 
     redirect_to gossip_path(@gossip)
   end
